@@ -30,11 +30,18 @@ public class WebSecurityConfigJDBC {
                 .passwordEncoder(passwordEncoder());
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable);
-        return http.build();
+     @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .authorizeRequests(authorize -> authorize
+                        .anyRequest().authenticated())
+                .formLogin(login -> login
+                        .permitAll())
+                .logout(logout -> logout
+                        .permitAll())
+                .build();
     }
+
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
