@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+</head>
+<body>
+<h2>Logout Page</h2>
+<form action="/logout" method="post">
+    <div>
+        <button type="submit">Logout</button>
+    </div>
+</form>
+<div th:if="${param.logout}">
+    <p>You have been successfully logged out.</p>
+</div>
+</body>
+</html>
